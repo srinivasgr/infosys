@@ -1,0 +1,38 @@
+<project name="test" basedir="." default="all">
+
+<property file="build.properties"/>
+
+<target name="all" depends="compile, jar, warfile">
+	<echo message="need to run all target in at a time"/>
+</target>
+
+<target name="compile">
+	<echo> compling the src files </echo>
+	
+<javac srcdir="F:/ANT/target/examples/java_files" destdir="F:/ANT/target/class.dir" includeantruntime="true" >
+
+</javac>
+
+</target>
+
+<target name="jar" depends="compile">
+	<echo> creating jar file with the hekp of class files </echo>
+
+		<jar basedir="${class_dir}" destfile="${pub_dir}/${test.jar}">
+			<manifest>
+					<attribute name="Created-By" value="${manifest.owner}, ${TODAY_US}"/>
+					<attribute name="Version" value="${targetVersion}"/>
+			</manifest>
+		</jar>
+</target>
+
+<target name="warfile" depends="jar">
+		<war destfile="${web_dir}/grwarfile.war" webxml="F:/E/wed.xml" >
+			<fileset dir="F:/ANT/target/examples/java_files"/>
+			<fileset dir="F:/ANT/target/pub.dir"/>
+			<fileset dir="F:/ANT/target/examples/html_files"/>
+		</war>
+		
+	</target>
+
+</project>

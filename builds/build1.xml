@@ -1,0 +1,59 @@
+<project name="test" basedir="." default="all">
+
+<property file="build.properties"/>
+
+<target name="all" depends="copy, rename, delete">
+	<echo message="need to run all target in at a time"/>
+</target>
+
+<target name="copy">
+	<echo message="copying respective file into respective floders"/>
+
+	<copy todir="${exe}/java_files">
+		<fileset dir="${src}">
+		<include name="*.java"/>
+		</fileset>
+	</copy>
+
+	<copy todir="${exe}/txt_files">
+		<fileset dir="${src}">
+		<include name="*.txt"/>
+		</fileset>
+	</copy>
+
+	<copy todir="${exe}/html_files">
+		<fileset dir="${src}">
+		<include name="*.html"/>
+		</fileset>
+	</copy>
+
+	<copy todir="${exe}/log_files">
+		<fileset dir="${src}">
+		<include name="*.log"/>
+		</fileset>
+	</copy>
+	
+	<copy todir="${exe}/prop_files">
+		<fileset dir="${src}">
+		<include name="*.properties"/>
+		</fileset>
+	</copy>
+		
+</target>	
+	
+<target name="rename" depends="copy">
+	<echo message="renaming a file"/>
+	
+	<rename src="${exe}/log_files/monday.log" dest="${exe}/log_files/Sunday.log"/>
+	
+</target>
+
+<target name="delete" depends="rename">
+		<echo message="deleting a file"/>
+
+<delete file="${exe}/java_files/HelloWorld1.java"/>
+
+</target>
+
+
+</project>

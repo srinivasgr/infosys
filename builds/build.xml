@@ -1,0 +1,135 @@
+<project name="test" basedir="." default="all">
+
+<property file="build.properties"/>
+
+<target name="all" depends="init, clean,create">
+	<echo message="need to run all target in at a time"/>
+</target>
+
+<target name="init">
+		<tstamp>
+			<format property="TODAY_US" pattern="MM/dd/yyyy hh:mm:ss.SSS aa" unit="hour"/>
+		</tstamp>
+	</target>
+
+
+
+
+<target name="clean" depends="init">
+	<echo message="cleaing the intial directories"/>
+	<delete dir="${tar.dir}"/>
+</target>
+
+<target name="create" depends="clean">
+	<echo message="create the intial directories"/>
+
+	<mkdir dir="${tar.dir}/examples"/>
+	<mkdir dir="${tar.dir}/pub.dir"/>
+	<mkdir dir="${tar.dir}/class.dir"/>
+	<mkdir dir="${tar.dir}/web.dir"/>
+</target>
+
+<!--<target name="copy" depends="create">
+	<echo message="copying respective file into respective floders"/>
+
+	<copy todir="${exe}/java_files">
+		<fileset dir="${src}">
+		<include name="*.java"/>
+		</fileset>
+	</copy>
+
+	<copy todir="${exe}/txt_files">
+		<fileset dir="${src}">
+		<include name="*.txt"/>
+		</fileset>
+	</copy>
+
+	<copy todir="${exe}/html_files">
+		<fileset dir="${src}">
+		<include name="*.html"/>
+		</fileset>
+	</copy>
+
+	<copy todir="${exe}/log_files">
+		<fileset dir="${src}">
+		<include name="*.log"/>
+		</fileset>
+	</copy>
+	
+	<copy todir="${exe}/prop_files">
+		<fileset dir="${src}">
+		<include name="*.properties"/>
+		</fileset>
+	</copy>
+	
+	<copy todir="${exe}/fil_docs">
+		<fileset dir="${src}">
+		<include name="*.file"/>
+		</fileset>
+	</copy>
+	
+</target>	
+	
+<target name="rename" depends="copy">
+	<echo message="renaming a file"/>
+	
+	<rename src="${exe}/log_files/monday.log" dest="${exe}/log_files/Sunday.log"/>
+	
+</target>
+
+<target name="delete" depends="rename">
+		<echo message="deleting a file"/>
+
+<delete file="${exe}/java_files/HelloWorld1.java"/>
+
+</target>
+
+<target name="compile" depends="delete">
+	<echo> compling the src files </echo>
+	
+<javac srcdir="F:/ANT/target/examples/java_files" destdir="F:/ANT/target/class.dir" includeantruntime="true" >
+
+</javac>
+
+</target>
+
+<target name="jar" depends="compile">
+	<echo> creating jar file with the hekp of class files </echo>
+
+<jar basedir="${class_dir}" destfile="${pub_dir}/${test.jar}">
+			<manifest>
+				<attribute name="Created-By" value="${manifest.owner}, ${TODAY_US}"/>
+				<attribute name="Version" value="${targetVersion}"/>
+			</manifest>
+		</jar>
+</target>
+
+<target name="warfile" depends="jar">
+		<war destfile="${web_dir}/grwarfile.war" webxml="F:/E/wed.xml" >
+			<fileset dir="F:/ANT/target/examples/java_files"/>
+			<fileset dir="F:/ANT/target/pub.dir"/>
+			<fileset dir="F:/ANT/target/examples/html_files"/>
+		</war>
+	</target>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+<target name="generate" depends="rename">
+	<echo message="copying a specific file into another folder"/>  -->  
+	
+</project> 
